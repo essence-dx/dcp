@@ -1,0 +1,34 @@
+/target/
+
+# Rust/editor local state
+**/*.rs.bk
+.cargo/
+.vscode/
+.idea/
+
+# Python/Node build artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+node_modules/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Logs and transient output
+*.log
+*.tmp
+tmp/
+temp/
+
+# OS noise
+.DS_Store
+Thumbs.db
