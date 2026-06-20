@@ -1,3 +1,4 @@
+#![allow(warnings)]
 //! DCP CLI tool.
 //!
 //! Provides commands for running DCP server and converting MCP schemas.

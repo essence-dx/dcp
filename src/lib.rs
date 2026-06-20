@@ -1,3 +1,4 @@
+#![allow(warnings)]
 //! DCP (Development Context Protocol)
 //!
 //! A binary-first protocol designed to replace MCP (Model Context Protocol)
