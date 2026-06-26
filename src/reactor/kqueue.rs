@@ -272,11 +272,6 @@ impl Reactor for KqueueReactor {
     }
 
     fn modify(&mut self, token: Token, interest: Interest) -> io::Result<()> {
-        let reg = self
-            .registrations
-            .get_mut(&token)
-            .ok_or_else(|| io::Error::new(io::ErrorKind::NotFound, "Token not registered"))?;
-
         #[cfg(any(
             target_os = "macos",
             target_os = "freebsd",
@@ -284,10 +279,20 @@ impl Reactor for KqueueReactor {
             target_os = "netbsd"
         ))]
         {
+            let fd = self
+                .registrations
+                .get(&token)
+                .ok_or_else(|| io::Error::new(io::ErrorKind::NotFound, "Token not registered"))?
+                .fd;
+
             // Remove old interest, add new
-            self.kevent_register(reg.fd, reg.interest, false)?;
-            self.kevent_register(reg.fd, interest, true)?;
+            self.kevent_register(fd, interest, true)?;
         }
+
+        let reg = self
+            .registrations
+            .get_mut(&token)
+            .ok_or_else(|| io::Error::new(io::ErrorKind::NotFound, "Token not registered"))?;
 
         reg.interest = interest;
         Ok(())
