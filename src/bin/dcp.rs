@@ -74,6 +74,14 @@ enum Commands {
 }
 
 fn main() {
+    let cfg = dx_dcp::dx_config::DcpDxConfig::load();
+    let _ = std::fs::create_dir_all(&cfg.sr_dir);
+    let _ = std::fs::create_dir_all(&cfg.receipts_dir);
+    let _ = cfg.write_sr("dcp", &[("tool", "dcp"), ("action", "run"), ("status", "ok")]);
+    if let Some(status) = cfg.read_status("dcp") {
+        eprintln!("[dcp] sr cache verified: {} entries", status.len());
+    }
+
     let cli = Cli::parse();
 
     // Handle global --stdio flag (shortcut for `dcp serve --stdio`)

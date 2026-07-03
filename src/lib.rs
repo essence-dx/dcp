@@ -11,6 +11,7 @@ pub mod cli;
 pub mod compat;
 pub mod context;
 pub mod dispatch;
+pub mod dx_config;
 pub mod error;
 pub mod multiplex;
 pub mod observability;

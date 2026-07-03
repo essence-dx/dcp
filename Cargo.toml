@@ -22,6 +22,7 @@ bytes = "1.5"
 tokio-rustls = "0.25"
 rustls-pemfile = "2.0"
 base64 = "0.21"
+serializer = { path = "../serializer", package = "dx-serializer", version = "0.1.0" }
 
 [target.'cfg(any(target_os = "linux", target_os = "macos"))'.dependencies]
 libc = "0.2"
