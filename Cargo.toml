@@ -1,6 +1,6 @@
 [package]
 name = "dx-dcp"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
 description = "Development Context Protocol - binary-first replacement for MCP"
 license = "MIT"
